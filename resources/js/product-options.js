@@ -1,13 +1,15 @@
 export function initProductOptions() {
+    const content = document.querySelector(".product__content");
+    if (!content) return;
+
+    const productId = content.dataset.id;
+    let selectedSize = content.dataset.size;
+    let customDesign = content.dataset.custom === "1";
+
     const sizeButtons = document.querySelectorAll(".product__size");
     const checkbox = document.querySelector(".product__checkbox");
     const priceElement = document.querySelector(".product__price-value");
     const sizeNote = document.querySelector(".product__price-note");
-
-    const content = document.querySelector(".product__content");
-    const productId = content.dataset.id;
-    let selectedSize = content.dataset.size;
-    let customDesign = content.dataset.custom === "1";
 
     async function calculatePrice() {
         try {

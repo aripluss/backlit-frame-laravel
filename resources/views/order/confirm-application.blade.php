@@ -1,32 +1,37 @@
-<!DOCTYPE html>
-<html lang="uk">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <title>Підтвердження замовлення</title>
-</head>
+@section('title', 'Замовлення прийнято')
 
-<body>
-    <h1>{{ App\Models\Order::greeting() }}</h1>
-    <p>{{ $order->getSummary() }}</p>
+@section('content')
 
-    <div class="back-to-site">
-        <a href="/backlit-frame" class="btn btn-link">⬅ Повернутися до сайту</a>
-    </div>
+    <section>
+        <div class="container">
+            <h1>Дякуємо за замовлення!</h1>
+            <p>{{ $order->getSummary() }}</p>
+    </section>
+    <section>
+        <div class="container">
+            <div>
+                <a href="/backlit-frame" class="btn btn--secondary">⬅ Повернутися до сайту</a>
+            </div>
+        </div>
+        </div>
+    </section>
 
+    <section>
+        <div class="container">
+            @php
+                $lastOrder = session('last_order');
+            @endphp
+            @if($lastOrder)
+                <h3>Останнє замовлення:</h3>
+                <ul>
+                    <li><strong>Замовник:</strong> {{ $lastOrder->name }}</li>
+                    <li><strong>Телефон:</strong> {{ $lastOrder->phone }}</li>
+                    <li><strong>Метод зв'язку:</strong> {{ $lastOrder->contactMethod }}</li>
+                </ul>
+            @endif
+        </div>
+    </section>
 
-    <!-- З сесії -->
-    @php
-        $lastOrder = session('last_order');
-    @endphp
-    @if($lastOrder)
-        <h3>Останнє замовлення:</h3>
-        <ul>
-            <li><strong>Замовник:</strong> {{ $lastOrder->name }}</li>
-            <li><strong>Телефон:</strong> {{ $lastOrder->phone }}</li>
-            <li><strong>Метод зв'язку:</strong> {{ $lastOrder->contactMethod }}</li>
-        </ul>
-    @endif
-</body>
-
-</html>
+@endsection

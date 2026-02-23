@@ -13,9 +13,3 @@ async function initPage() {
 }
 
 initPage();
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     initBurgerMenu();
-//     initFooterYear();
-//     initToggleImage();
-// });
