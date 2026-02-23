@@ -1,0 +1,102 @@
+@use "../utils" as *;
+
+.custom {
+  background-color: var(--bgr-white-color);
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    @include respond(md) {
+      gap: 48px;
+    }
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  /* steps */
+
+  &__steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    @include respond(md) {
+      gap: 32px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__step {
+    position: relative;
+    @include respond(lg) {
+      &:nth-child(2) {
+        margin-top: 48px;
+      }
+
+      &:nth-child(3) {
+        margin-top: 96px;
+      }
+    }
+  }
+
+  &__step-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: $radius-lg;
+    margin-block-end: 16px;
+
+    @include respond(lg) {
+      aspect-ratio: 0.78;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+  }
+
+  &__step-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-block-end: 8px;
+  }
+
+  &__step-text {
+    font-size: $font-sm;
+  }
+
+  /* CTA */
+
+  &__cta {
+    padding: 32px;
+    background-color: var(--bgr-accent-color);
+    border: 1px solid var(--shadow-color);
+    border-radius: $radius-xl;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include respond(md) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    & .btn {
+      white-space: nowrap;
+    }
+  }
+
+  &__cta-text {
+    margin-block-start: 8px;
+    color: var(--accent-text-color);
+  }
+}

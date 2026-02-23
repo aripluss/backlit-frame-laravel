@@ -1,0 +1,44 @@
+@use "../utils" as *;
+
+.advantages {
+  &__title {
+    text-align: center;
+    margin-bottom: 32px;
+
+    @include respond(md) {
+      margin-bottom: 48px;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+
+    @include respond(md) {
+      gap: 32px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include respond(lg) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  &__item {
+    text-align: center;
+  }
+
+  &__icon {
+    font-size: 32px;
+    margin-block-end: 16px;
+  }
+
+  &__item-title {
+    margin-block-end: 8px;
+  }
+
+  &__item-text {
+    font-size: $font-sm;
+  }
+}

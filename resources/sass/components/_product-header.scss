@@ -1,0 +1,25 @@
+@use "../utils" as *;
+
+.product-header {
+  background-color: var(--bgr-color);
+  padding-block: 40px;
+
+  &__container {
+    display: flex;
+    gap: 12px;
+  }
+
+  &__btn-back {
+    height: 100%;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__badge {
+    align-self: flex-start;
+  }
+}

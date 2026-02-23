@@ -1,0 +1,68 @@
+@use "../utils" as *;
+
+.footer {
+  padding-block: 40px;
+  background-color: var(--bgr-dark-color);
+  color: white;
+
+  @include respond(md) {
+    padding-block: 48px;
+  }
+
+  &__container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    @include respond(md) {
+      flex-direction: row;
+      text-align: left;
+      gap: 32px;
+
+      & .footer__logo-and-motto,
+      & .footer__copyright,
+      & .footer__social-networks {
+        flex: 1;
+      }
+    }
+  }
+
+  &__logo-and-motto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    @include respond(md) {
+      align-items: start;
+    }
+  }
+
+  &__text,
+  &__copyright {
+    color: var(--tertiary-text-color);
+    font-size: $font-sm;
+  }
+
+  &__social-networks {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    font-size: $font-sm;
+    @include respond(lg) {
+      gap: 84px;
+    }
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}

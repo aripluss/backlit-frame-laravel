@@ -1,0 +1,57 @@
+:root {
+  // background
+  --bgr-color: #f8fafc;
+  --bgr-white-color: #ffffff;
+  --bgr-dark-color: #1e293b;
+  --bgr-accent-color: #fffbeb;
+  --bgr-badge: #fef3c7;
+  // accent
+  --accent-color: #f59e0b;
+  // text
+  --accent-text-color: #d97706;
+  --primary-text-color: #0f172a;
+  --secondary-text-color: #475569;
+  --tertiary-text-color: #64748b;
+  // borders
+  --border-color: #e5e7eb;
+  // shadow
+  --shadow-grey-color: #e2e8f080;
+  --shadow-color: #fde68a;
+  // fonts
+  --font-main: "Poppins", sans-serif;
+  --font-headers: "Cormorant Unicase", serif;
+
+  --header-height: 64px;
+}
+
+// font sizes
+$font-xs: 12px; // nav links & badge
+$font-sm: 14px; // btns & card text & form labels & footer text
+$font-md: 16px; // base & h4
+$font-subtitle: 18px; // subtitle
+$font-h3: 24px; // h3
+$font-lg: 30px; // h2 mobile
+$font-xl: 36px; // h1 mobile & h2 >mobile
+$font-2xl: 48px; // h2 how it works section
+$font-3xl: 60px; // h1 tablet
+$font-4xl: 86px; // h1 desktop
+
+// font weights
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// radius
+$radius-sm: 10px; // icons (how it works section)
+$radius-md: 12px; // reviews cards
+$radius-lg: 16px; // cards images
+$radius-xl: 25px; // Hero image & cta (steps to order section)
+$radius-2xl: 32px; // gif video
+$radius-3xl: 40px; // contact form card
+$radius-pill: 50px;
+
+// shadow
+$shadow-default: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+$shadow-card: 0 20px 25px -5px var(--shadow-grey-color);
+$shadow-yellow: 0 10px 15px -3px var(--shadow-color);

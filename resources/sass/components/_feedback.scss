@@ -1,0 +1,51 @@
+@use "../utils" as *;
+
+.feedback {
+  &__title {
+    text-align: center;
+    margin-block-end: 32px;
+
+    @include respond(md) {
+      margin-block-end: 48px;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    @include respond(md) {
+      gap: 24px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include respond(lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__item {
+    background-color: var(--bgr-white-color);
+    padding: 24px 16px;
+    border-radius: $radius-md;
+    box-shadow: $shadow-default;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__rating {
+    color: var(--accent-color);
+  }
+
+  &__text {
+    color: var(--secondary-text-color);
+    font-style: italic;
+  }
+
+  &__author {
+    font-weight: 700;
+    font-size: $font-md;
+  }
+}

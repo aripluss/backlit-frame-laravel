@@ -1,0 +1,166 @@
+@use "../utils" as *;
+
+.contact-form {
+  background-color: white;
+  border-top: 1px solid var(--border-color);
+
+  &__card {
+    max-inline-size: 832px;
+    margin-inline: auto;
+    padding: 32px;
+    background-color: var(--bgr-color);
+    border-radius: $radius-3xl;
+    border: 1px solid var(--border-color);
+    box-shadow: $shadow-card;
+
+    @include respond(md) {
+      padding: 48px;
+    }
+  }
+
+  &__header {
+    text-align: center;
+    margin-block-end: 32px;
+    @include respond(md) {
+      margin-block-end: 48px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 16px;
+    @include respond(md) {
+      font-size: $font-xl;
+    }
+  }
+
+  &__subtitle {
+    color: var(--tertiary-text-color);
+    font-size: $font-subtitle;
+  }
+
+  // form
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    @include respond(md) {
+      gap: 48px;
+    }
+  }
+
+  // name / phone
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    @include respond(md) {
+      gap: 48px;
+    }
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include respond(md) {
+      flex-direction: row;
+      gap: 24px;
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__label {
+    font-size: $font-sm;
+    font-weight: $fw-semibold;
+    margin-block-end: 8px;
+    color: var(--secondary-text-color);
+  }
+
+  &__input {
+    padding-inline: 16px;
+    padding-block: 16px;
+    border-radius: $radius-lg;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    outline: none;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: var(--accent-color);
+    }
+  }
+
+  // radio btns
+
+  &__fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__legend {
+    font-weight: 600;
+    font-size: $font-sm;
+    color: var(--primary-text-color);
+    margin-block-end: 8px;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @include respond(md) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-inline: 10px;
+    padding-block: 16px;
+    border-radius: $radius-lg;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: var(--accent-color);
+    }
+  }
+
+  &__radio {
+    inline-size: 20px;
+    block-size: 20px;
+    accent-color: var(--accent-color);
+  }
+
+  &__option-text {
+    font-weight: 500;
+    color: var(--secondary-text-color);
+  }
+
+  // submit btn
+
+  &__submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  &__submit-icon {
+    inline-size: 20px;
+    block-size: 20px;
+  }
+}

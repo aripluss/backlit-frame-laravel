@@ -1,0 +1,49 @@
+@use "../utils" as *;
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translateY(-100%);
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+
+  @include respond(md) {
+    display: none;
+  }
+
+  &.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  &__content {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bgr-color);
+    padding-top: 80px;
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 84px;
+  }
+
+  .nav__link {
+    font-size: $font-h3;
+    color: var(--secondary-text-color);
+  }
+}

@@ -1,0 +1,73 @@
+@use "../utils" as *;
+
+.catalog-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &__header-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include respond(md) {
+      flex-direction: row;
+      align-items: start;
+    }
+  }
+
+  &__filters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+
+    @include respond(md) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    @include respond(lg) {
+      grid-template-columns: repeat(9, 1fr);
+    }
+  }
+
+  &__filter-btn {
+    flex: 1;
+    padding-inline: 6px;
+  }
+
+  &__header {
+    flex: 1;
+  }
+
+  &__search {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  &__search-input {
+    flex: 1;
+    padding: 16px;
+    border-radius: $radius-lg;
+    border: 1px solid var(--border-color);
+  }
+
+  &__search-btn {
+    border-radius: 100%;
+    padding: 16px;
+
+    > svg {
+      inline-size: 24px;
+      block-size: 24px;
+    }
+  }
+
+  &__title {
+    font-size: $font-xl;
+  }
+
+  &__subtitle {
+    color: var(--accent-text-color);
+  }
+}

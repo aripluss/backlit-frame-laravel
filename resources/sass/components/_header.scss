@@ -1,0 +1,126 @@
+@use "../utils" as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: rgb(255 255 255 / 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: $shadow-default var(--shadow-color);
+  @include respond(md) {
+    gap: 24px;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+
+    .logo {
+      padding-block: 16px;
+      display: none;
+      &--small {
+        display: block;
+      }
+      &--large {
+        display: none;
+      }
+      @include respond(sm) {
+        &--small {
+          display: none;
+        }
+        &--large {
+          display: block;
+        }
+      }
+    }
+
+    .btn {
+      margin-left: auto;
+      padding-block: 8px;
+      padding-inline: 12px;
+      font-size: $font-sm;
+      line-height: 20px;
+      font-weight: $fw-semibold;
+      @include respond(md) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__navigation {
+    display: none;
+
+    @include respond(md) {
+      opacity: 1;
+      visibility: visible;
+      width: auto;
+      display: block;
+      position: static;
+      left: auto;
+      overflow: unset;
+      transform: none;
+      flex-direction: row;
+
+      .nav__list {
+        flex-direction: row;
+        gap: clamp(32px, 6vw, 84px);
+      }
+    }
+  }
+
+  .nav {
+    &__list {
+      display: flex;
+    }
+
+    &__link {
+      padding-block: 20px;
+      block-size: 100%;
+      font-size: $font-xs;
+      color: var(--secondary-text-color);
+      text-decoration: none;
+      transition: color 0.25s ease;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--accent-text-color);
+      }
+    }
+  }
+
+  .burger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+
+    @include respond(md) {
+      display: none;
+    }
+
+    span {
+      width: 22px;
+      height: 2px;
+      background-color: var(--primary-text-color);
+      border-radius: 2px;
+      transition: transform 0.25s ease;
+    }
+  }
+}
+
+body.catalog-page .header__navigation,
+body.product-page .header__navigation {
+  display: none;
+}
+body.catalog-page .header .burger,
+body.product-page .header .burger {
+  display: none;
+}

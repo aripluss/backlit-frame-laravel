@@ -1,0 +1,162 @@
+@use "../utils" as *;
+
+.product {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include respond(lg) {
+      flex-direction: row;
+      gap: 64px;
+    }
+  }
+
+  // Image
+
+  &__image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius-xl;
+    aspect-ratio: 343 / 399;
+    max-width: 720px;
+    width: 100%;
+    margin-inline: auto;
+    box-shadow: $shadow-card;
+    @include respond(lg) {
+      flex-shrink: 0;
+      max-height: 660px;
+      inline-size: 568px;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__toggle {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  // CONTENT
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    @include respond(lg) {
+      align-items: start;
+    }
+  }
+
+  &__text-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__title {
+    font-family: var(--font-headers);
+  }
+
+  &__benefit {
+    color: var(--accent-text-color);
+  }
+
+  &__origin {
+    color: var(--accent-text-color);
+  }
+
+  // SIZES
+
+  &__sizes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    @include respond(lg) {
+      align-items: start;
+    }
+  }
+
+  &__sizes-title {
+    font-weight: $fw-bold;
+  }
+
+  &__sizes-list {
+    display: flex;
+    gap: 12px;
+  }
+
+  &__size--active {
+    background-color: var(--primary-text-color);
+    color: white;
+    &:hover,
+    &:focus-visible {
+      background-color: var(--bgr-dark-color);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  // OPTION
+
+  &__option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: $font-subtitle;
+    font-weight: $fw-bold;
+    color: var(--secondary-text-color);
+  }
+
+  &__checkbox {
+    inline-size: 18px;
+    block-size: 18px;
+  }
+
+  // PRICE
+
+  &__price-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  &__price-value {
+    font-size: $font-lg;
+    font-weight: $fw-bold;
+  }
+
+  &__price-note {
+    font-size: $font-sm;
+    color: var(--secondary-text-color);
+  }
+
+  // BTN
+
+  &__cta {
+    @include respond(md) {
+      align-self: center;
+    }
+    @include respond(lg) {
+      align-self: unset;
+    }
+  }
+}

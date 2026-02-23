@@ -1,0 +1,37 @@
+@use "../utils" as *;
+
+.pagination {
+  &__wrapper {
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+
+    @include respond(md) {
+      justify-content: space-between;
+      max-width: 832px;
+    }
+  }
+
+  &__page-btn {
+    padding-inline: 6px;
+    white-space: nowrap;
+    flex: 1 1 auto;
+
+    @include respond(md) {
+      padding-inline: 32px;
+      flex: 0 1 auto;
+    }
+  }
+
+  &__dots {
+    font-size: 20px;
+    font-weight: $fw-bold;
+    text-align: center;
+
+    flex: 0 0 auto;
+    @include respond(md) {
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@use "utils" as *;
+@use "main/main";
+
+@use "components/header";
+@use "components/footer";
+@use "components/mobile-menu";
+
+@use "components/hero";
+@use "components/popular-designs";
+@use "components/how-it-works";
+@use "components/why-we";
+@use "components/steps-to-order";
+@use "components/feedback";
+@use "components/faq";
+@use "components/contact_form";
+
+@use "components/catalog-controls";
+@use "components/catalog";
+@use "components/pagination";
+
+@use "./components/product-header";
+@use "./components/product-info";
