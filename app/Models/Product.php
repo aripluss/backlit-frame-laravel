@@ -51,7 +51,8 @@ class Product extends Model
         $this->sizeExtras = $config->get('size_extras');
         $this->customPrice = $config->get('custom_price');
 
-        $this->sizes = !empty($sizes) ? $sizes : array_keys($this->sizeExtras);
+        // $this->sizes = !empty($sizes) ? $sizes : array_keys($this->sizeExtras);
+        $this->sizes = array_keys($this->sizeExtras); // завжди використовуються всі доступні розміри з конфігурації
         $this->selectedSize = $this->sizes[0] ?? 'A5';
     }
 
