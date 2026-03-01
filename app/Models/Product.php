@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Services\Config;
 use Exception;
 
 class Product extends Model
@@ -47,9 +46,8 @@ class Product extends Model
         $this->basePrice = $basePrice;
         $this->customDesign = false;
 
-        $config = Config::getInstance();
-        $this->sizeExtras = $config->get('size_extras');
-        $this->customPrice = $config->get('custom_price');
+        $this->sizeExtras = config('shop.size_extras');
+        $this->customPrice = config('shop.custom_price');
 
         // $this->sizes = !empty($sizes) ? $sizes : array_keys($this->sizeExtras);
         $this->sizes = array_keys($this->sizeExtras); // завжди використовуються всі доступні розміри з конфігурації

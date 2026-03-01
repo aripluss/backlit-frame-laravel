@@ -6,8 +6,6 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Traits\Formatter;
 use App\Models\Order;
-use App\Services\Config;
-
 
 class ContactRequestFormController extends Controller
 {
@@ -25,8 +23,8 @@ class ContactRequestFormController extends Controller
 
         $order = new Order($user_name, $phone_formatted, $contact_method);
 
-        $config = Config::getInstance();
-        $lifetime = $config->get('cookie_lifetime');
+
+        $lifetime = config('shop.cookie_lifetime');
         // cookie()->queue('last_user', $user_name, $lifetime); // шифрує, не підходить для зберігання імені
         setcookie('last_user', $user_name, time() + $lifetime, '/');
 

@@ -12,7 +12,8 @@
     <section>
         <div class="container">
             <div>
-                <a href="/backlit-frame" class="btn btn--secondary">⬅ Повернутися до сайту</a>
+                <button class="btn btn--secondary" onclick="history.back()">⬅ Повернутися до сайту</button>
+                <!-- <a href="/backlit-frame-laravel" class="btn btn--secondary">⬅ Повернутися до сайту</a> -->
             </div>
         </div>
         </div>
