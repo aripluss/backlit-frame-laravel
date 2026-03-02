@@ -7,50 +7,51 @@ use Exception;
 
 class Product extends Model
 {
+    // Поля з БД
+    protected $fillable = [
+        'title',
+        'image',
+        'alt',
+        'text',
+        'origin',
+        'benefit',
+        'description',
+        'basePrice',
+        'sizes', // необов'язкове
+        'category_id', // необов'язкове
+        'discount' // необов'язкове
+    ];
 
-    public int $id;
-    public $title;
-    private $basePrice;
-    protected $category;
-    public string $image;
-    public string $origin;
-    public string $benefit;
-    public string $description;
-    public array $sizes;
-    public string $selectedSize;
+    protected $casts = [
+        'sizes' => 'array', // Eloquent автоматично декодує JSON у масив
+        'discount' => 'float'
+    ];
 
-    private array $sizeExtras;
-    private float $customPrice;
+    // Немає в БД
+    public $selectedSize;
+    public $customDesign = false;
 
-    public bool $customDesign;
+    // З config/shop.php
+    public $sizeExtras;
+    public $customPrice;
+
 
     public function __construct(
-        int $id,
-        string $title,
-        string $category,
-        string $image,
-        string $origin,
-        string $benefit,
-        string $description,
-        float $basePrice,
+        array $attributes = [],
         array $sizes = [],
 
     ) {
-        $this->id = $id;
-        $this->title = $title;
-        $this->category = $category;
-        $this->image = $image;
-        $this->origin = $origin;
-        $this->benefit = $benefit;
-        $this->description = $description;
-        $this->basePrice = $basePrice;
-        $this->customDesign = false;
+        parent::__construct($attributes);
 
         $this->sizeExtras = config('shop.size_extras');
         $this->customPrice = config('shop.custom_price');
 
-        // $this->sizes = !empty($sizes) ? $sizes : array_keys($this->sizeExtras);
-        $this->sizes = array_keys($this->sizeExtras); // завжди використовуються всі доступні розміри з конфігурації
+        $this->sizes = !empty($this->sizes)
+            ? $this->sizes                               // беремо з БД
+            : (!empty($sizes)
+                ? $sizes                                 // інакше розміри, передані конструктору
+                : array_keys($this->sizeExtras)); // інакше беремо всі розміри (дефолтні) з config
+
         $this->selectedSize = $this->sizes[0] ?? 'A5';
     }
 
@@ -63,51 +64,58 @@ class Product extends Model
         if ($this->customDesign) {
             $price += $this->customPrice;
         }
-
         return $price;
-    }
-
-    public function __get($name)
-    {
-        $allowed = [
-            'id',
-            'title',
-            'category',
-            'image',
-            'origin',
-            'benefit',
-            'description',
-            'basePrice',
-            'customPrice',
-            'selectedSize',
-            'customDesign',
-            'sizes'
-        ];
-
-        if (in_array($name, $allowed, true)) {
-            return $this->$name;
-        }
-
-
-        throw new Exception("Property {$name} does not exist or is not accessible.");
-    }
-
-}
-
-
-// Зі знижкою:
-class SpecialProduct extends Product
-{
-    private float $discount;
-
-    public function __construct($id, $title, $category, $image, $origin, $benefit, $description, $basePrice, $discount, $sizes)
-    {
-        parent::__construct($id, $title, $category, $image, $origin, $benefit, $description, $basePrice, $sizes);
-        $this->discount = $discount;
     }
 
     public function getDiscountedPrice(): float
     {
-        return $this->getPrice() * (1 - $this->discount); // 0.2 = 20% знижки
+        return $this->getPrice() * (1 - ($this->discount ?? 0));
+    }
+
+    // фільтр акційних
+    public function scopeDiscounted($query)
+    {
+        return $query->where('discount', '>', 0);
+    }
+
+
+    public function getSizesAttribute($value)
+    {
+        return $value ?? array_keys($this->sizeExtras);
+    }
+
+    public function getSelectedSizeAttribute()
+    {
+        return $this->selectedSize;
+    }
+
+    public function getCustomDesignAttribute()
+    {
+        return $this->customDesign;
+    }
+
+    // public function __get($name)
+    // {
+    //     $allowed = [ // + Eloquent автоматично дає доступ до всіх полів fillable
+    //         'selectedSize',
+    //         'customDesign',
+    //         'sizes'
+    //     ];
+
+    //     if (\in_array($name, $allowed, true)) {
+    //         return $this->$name;
+    //     }
+    //     throw new Exception("Property {$name} does not exist or is not accessible.");
+    // }
+
+    // Зв’язки Eloquent
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

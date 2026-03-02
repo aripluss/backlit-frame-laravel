@@ -48,12 +48,16 @@
       <!-- Price -->
       <div class="product__price-btn-wrapper">
         <div class="product__price">
-          <span class="product__price-value">
-            {{ $price }} грн
-          </span>
-          <span class="product__price-note">обраний розмір
-            {{ $product->selectedSize }}
-          </span>
+
+          @if($product->discount > 0)
+            <span class="product__price-old">{{ $price }} грн</span>
+            <span class="product__price-value">{{ $discountedPrice }} грн</span>
+            <span class="product__badge-discount">(-{{ $product->discount * 100 }}%)</span>
+          @else
+            <span class="product__price-value">{{ $price }} грн</span>
+          @endif
+
+          <span class="product__price-note">обраний розмір {{ $product->selectedSize }}</span>
         </div>
 
         <button class="product__cta btn btn--primary">Замовити світильник</button>

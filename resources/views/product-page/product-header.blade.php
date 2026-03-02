@@ -8,9 +8,12 @@
       <h2 class="product-header__title">
         {{ $product->title }}
       </h2>
-      <span class="product-header__badge badge">
-        {{ $productData['category'] ?? $product->category }}
-      </span>
+
+      @if($product->category)
+        <span class="product-header__badge badge">
+          {{ $product->category->name }}
+        </span>
+      @endif
     </div>
   </div>
 </section>
