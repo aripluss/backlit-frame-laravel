@@ -4,23 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class CatalogController
 {
-    public function index(Request $request)
+    public function index(Request $request, $id = null)
     {
         // GET
-        $category = $request->query('category', '');
         $searchQuery = $request->query('q', '');
         $currentPage = max(1, (int) $request->query('page', 1));
 
         $query = Product::with(['category', 'tags']);
 
         // filtration
-        if ($category) {
-            $query->whereHas('category', function ($q) use ($category) {
-                $q->where('name', $category);
-            });
+        $category = null; // дефолт для випадку без фільтра
+        $categoryName = $request->query('category', null);
+        if ($categoryName) {
+            $category = Category::where('name', $categoryName)->firstOrFail();
+            $query->where('category_id', $category->id);
         }
 
         // search
@@ -34,7 +35,6 @@ class CatalogController
 
         // pagination
         $itemsPerPage = 12;
-
         $paginatedItems = $query->orderBy('id', 'asc')
             ->paginate($itemsPerPage, ['*'], 'page', $currentPage);
 
