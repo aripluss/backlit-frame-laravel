@@ -94,19 +94,6 @@ class Product extends Model
         return $this->customDesign;
     }
 
-    // public function __get($name)
-    // {
-    //     $allowed = [ // + Eloquent автоматично дає доступ до всіх полів fillable
-    //         'selectedSize',
-    //         'customDesign',
-    //         'sizes'
-    //     ];
-
-    //     if (\in_array($name, $allowed, true)) {
-    //         return $this->$name;
-    //     }
-    //     throw new Exception("Property {$name} does not exist or is not accessible.");
-    // }
 
     // Зв’язки Eloquent
     public function category()

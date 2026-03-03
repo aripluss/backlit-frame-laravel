@@ -17,9 +17,7 @@ class CatalogController
         $query = Product::with(['category', 'tags']);
 
         // filtration
-        // $items = $catalogItems;
         if ($category) {
-            // $items = array_filter($items, fn($item) => ($item['category'] ?? '') === $category);
             $query->whereHas('category', function ($q) use ($category) {
                 $q->where('name', $category);
             });
@@ -37,13 +35,6 @@ class CatalogController
         // pagination
         $itemsPerPage = 12;
 
-        // $totalItems = count($items);
-        // $totalPages = max(1, ceil($totalItems / $itemsPerPage));
-
-        // $currentPage = min($currentPage, $totalPages);
-
-        // $offset = ($currentPage - 1) * $itemsPerPage;
-        // $paginatedItems = array_slice($items, $offset, $itemsPerPage);
         $paginatedItems = $query->orderBy('id', 'asc')
             ->paginate($itemsPerPage, ['*'], 'page', $currentPage);
 
